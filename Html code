@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barcode Generator</title>
+    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.0/dist/JsBarcode.all.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f4f4f9;
+            text-align: center;
+        }
+        input {
+            padding: 10px;
+            font-size: 16px;
+            margin-top: 20px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            padding: 10px 20px;
+            margin-top: 20px;
+            font-size: 16px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #f1c40f;
+        }
+        #barcode {
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Barcode Generator</h1>
+    <p>Enter the text or number you want to generate a barcode for:</p>
+
+    <input type="text" id="barcodeInput" placeholder="Enter barcode text or number" />
+    <br>
+    <button onclick="generateBarcode()">Generate Barcode</button>
+
+    <div id="barcode">
+        <!-- Barcode will be rendered here -->
+    </div>
+
+    <script>
+        // Function to generate the barcode
+        function generateBarcode() {
+            var inputText = document.getElementById("barcodeInput").value;
+            if(inputText) {
+                JsBarcode("#barcode", inputText, {
+                    format: "CODE128", // Barcode format (CODE128, EAN13, etc.)
+                    displayValue: true, // Show value under the barcode
+                    width: 2,           // Width of each bar
+                    height: 100,        // Height of barcode
+                    margin: 10          // Margin around barcode
+                });
+            } else {
+                alert("Please enter text or number to generate a barcode.");
+            }
+        }
+    </script>
+
+</body>
+</html>
